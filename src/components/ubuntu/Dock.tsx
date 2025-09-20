@@ -37,7 +37,7 @@ export function Dock() {
   const mouseX = useMotionValue(Infinity);
 
   return (
-    <div className="flex fixed bottom-4 left-1/2 -translate-x-1/2 mb-[20px] sm:mb-5">
+    <div className="flex fixed bottom-4 left-1/2 -translate-x-1/2 mb-[40px] sm:mb-5">
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}

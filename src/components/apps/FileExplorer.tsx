@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Home, Briefcase, Folder, Award, Code, Phone, Menu, X } from "lucide-react";
+import {
+  Home,
+  Briefcase,
+  Folder,
+  Award,
+  Code,
+  Phone,
+  Menu,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { EducationView } from "./EducationView";
 import { ProjectsView } from "./ProjectsView";
@@ -33,21 +42,26 @@ export function FileExplorer() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { theme } = useTheme();
 
-  const isDark = theme === 'dark';
-  const containerBg = isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900";
-  const sidebarBg = isDark ? "bg-gray-800/90 border-r border-gray-700" : "bg-gray-200/90 border-r border-gray-300";
+  const isDark = theme === "dark";
+  const containerBg = isDark
+    ? "bg-gray-900 text-white"
+    : "bg-gray-50 text-gray-900";
+  const sidebarBg = isDark
+    ? "bg-gray-800/90 border-r border-gray-700"
+    : "bg-gray-200/90 border-r border-gray-300";
   const sidebarHoverBg = isDark ? "hover:bg-gray-700/50" : "hover:bg-gray-300/50";
-  const sidebarActiveBg = isDark ? "bg-orange-500 text-white font-semibold shadow-lg" : "bg-orange-500 text-white font-semibold shadow-lg";
-  const headerBg = isDark ? "bg-gray-800 border-b border-gray-700" : "bg-gray-200 border-b border-gray-300";
+  const sidebarActiveBg =
+    "bg-orange-500 text-white font-semibold shadow-lg";
+  const headerBg = isDark
+    ? "bg-gray-800 border-b border-gray-700"
+    : "bg-gray-200 border-b border-gray-300";
   const pathText = isDark ? "text-gray-300" : "text-gray-600";
   const homeItemBg = isDark ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-300 hover:bg-gray-400";
   const homeItemIconColor = isDark ? "text-orange-400" : "text-orange-600";
   const homeItemTextColor = isDark ? "text-white" : "text-gray-800";
   const floatingIconColor = isDark ? "text-gray-600/10" : "text-gray-400/20";
-  const initialsBg = isDark ? "bg-gray-700 text-gray-400" : "bg-gray-300 text-gray-600";
-  const mobileMenuButton = isDark ? "text-white" : "text-gray-800";
   const closeButton = isDark ? "text-white" : "text-gray-800";
-
+  const mobileMenuButton = isDark ? "text-white" : "text-gray-800";
 
   const handleNavigate = (path: string) => {
     setCurrentPath(path);
@@ -74,7 +88,11 @@ export function FileExplorer() {
                 <motion.div
                   key={idx}
                   className={cn("absolute", floatingIconColor)}
-                  initial={{ y: Math.random() * 800, x: Math.random() * 800, opacity: 0 }}
+                  initial={{
+                    y: Math.random() * 800,
+                    x: Math.random() * 800,
+                    opacity: 0,
+                  }}
                   animate={{
                     y: [Math.random() * 600, Math.random() * 600 - 100],
                     opacity: [0.1, 0.2, 0.1],
@@ -95,14 +113,27 @@ export function FileExplorer() {
                 <motion.div
                   key={idx}
                   onDoubleClick={() => handleNavigate(item.path)}
-                  whileHover={{ scale: 1.05, boxShadow: "0 12px 24px rgba(0,0,0,0.4)" }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 12px 24px rgba(0,0,0,0.4)",
+                  }}
                   className={cn(
                     "rounded-xl flex flex-col items-center justify-center p-4 md:p-6 cursor-pointer transition-all duration-300",
                     homeItemBg
                   )}
                 >
-                  <item.icon size={32} className={cn("mb-2 md:size-12", homeItemIconColor)} />
-                  <span className={cn("font-semibold text-sm md:text-lg text-center", homeItemTextColor)}>{item.name}</span>
+                  <item.icon
+                    size={32}
+                    className={cn("mb-2 md:size-12", homeItemIconColor)}
+                  />
+                  <span
+                    className={cn(
+                      "font-semibold text-sm md:text-lg text-center",
+                      homeItemTextColor
+                    )}
+                  >
+                    {item.name}
+                  </span>
                 </motion.div>
               ))}
             </div>
@@ -112,8 +143,15 @@ export function FileExplorer() {
   };
 
   return (
-    <div className={cn("flex flex-col md:flex-row h-full", containerBg)}>
-      <div className={cn("hidden md:flex w-48 p-3 flex-col space-y-2 relative z-10", sidebarBg)}>
+    <div
+      className={cn("relative flex flex-col md:flex-row h-full overflow-hidden", containerBg)}
+    >
+      <div
+        className={cn(
+          "hidden md:flex w-48 p-3 flex-col space-y-2 relative z-10",
+          sidebarBg
+        )}
+      >
         <div className="flex-grow">
           {sidebarItems.map((item) => (
             <button
@@ -122,7 +160,11 @@ export function FileExplorer() {
               className={cn(
                 "flex items-center space-x-2 p-2 rounded-md w-full text-left transition",
                 sidebarHoverBg,
-                currentPath === item.path ? sidebarActiveBg : (isDark ? "text-white" : "text-gray-800")
+                currentPath === item.path
+                  ? sidebarActiveBg
+                  : isDark
+                    ? "text-white"
+                    : "text-gray-800"
               )}
             >
               <item.icon size={20} />
@@ -131,8 +173,14 @@ export function FileExplorer() {
           ))}
         </div>
       </div>
-      <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
-        <div className={cn("flex items-center justify-between p-4 sticky top-0 z-20 md:hidden", headerBg)}>
+
+      <div className="flex-1 flex flex-col min-h-0 overflow-y-auto relative">
+        <div
+          className={cn(
+            "flex items-center justify-between p-4 sticky top-0 z-20 md:hidden",
+            headerBg
+          )}
+        >
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className={cn("p-2 rounded-md transition", sidebarHoverBg, mobileMenuButton)}
@@ -149,10 +197,16 @@ export function FileExplorer() {
               animate={{ x: "0%" }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className={cn("fixed inset-y-0 left-0 w-64 p-4 flex flex-col z-30", sidebarBg)}
+              className={cn(
+                "absolute inset-y-0 left-0 w-64 p-4 flex flex-col z-30 h-full",
+                sidebarBg
+              )}
             >
               <div className="flex justify-end">
-                <button onClick={() => setSidebarOpen(false)} className={cn("p-2", closeButton)}>
+                <button
+                  onClick={() => setSidebarOpen(false)}
+                  className={cn("p-2", closeButton)}
+                >
                   <X size={24} />
                 </button>
               </div>
@@ -164,7 +218,11 @@ export function FileExplorer() {
                     className={cn(
                       "flex items-center space-x-2 p-3 rounded-md w-full text-left transition",
                       sidebarHoverBg,
-                      currentPath === item.path ? sidebarActiveBg : (isDark ? "text-white" : "text-gray-800")
+                      currentPath === item.path
+                        ? sidebarActiveBg
+                        : isDark
+                          ? "text-white"
+                          : "text-gray-800"
                     )}
                   >
                     <item.icon size={20} />
@@ -178,10 +236,7 @@ export function FileExplorer() {
         <div className={cn("hidden md:flex p-2 text-sm", headerBg, pathText)}>
           Path: {currentPath}
         </div>
-
-        <div className="flex-1 overflow-auto">
-          {renderSection()}
-        </div>
+        <div className="flex-1 overflow-auto">{renderSection()}</div>
       </div>
     </div>
   );
