@@ -4,6 +4,8 @@ import { useEffect } from "react";
 
 export const useSecurityBlocker = () => {
   useEffect(() => {
+    if (process.env.NODE_ENV === "development") return;
+
     const disableContextMenu = (e: MouseEvent) => e.preventDefault();
     document.addEventListener("contextmenu", disableContextMenu);
 

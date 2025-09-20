@@ -21,9 +21,9 @@ export function Desktop() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setFading(true);
-      const fadeOutTimer = setTimeout(() => setLoading(false), 600);
+      const fadeOutTimer = setTimeout(() => setLoading(false), 500);
       return () => clearTimeout(fadeOutTimer);
-    }, 3000);
+    }, 7000);
     return () => clearTimeout(timer);
   }, []);
 

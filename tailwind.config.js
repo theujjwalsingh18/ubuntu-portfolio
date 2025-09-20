@@ -70,36 +70,29 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+        logoZoomIn: {
+          "0%": { transform: "scale(0.2)", opacity: "0" },
+          "60%": { transform: "scale(1.3)", opacity: "1" },
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
-        'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+        logoSpin: {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        fadeLine: {
+          from: { opacity: "0", transform: "translateY(5px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
         blink: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' },
-        },
-        bounce: {
-          '0%, 100%': { transform: 'translateY(-10%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
-          '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
+          "0%, 50%, 100%": { opacity: "1" },
+          "25%, 75%": { opacity: "0" },
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        blink: 'blink 1s step-end infinite',
-        bounce: 'bounce 1s infinite',
+        logoZoomIn: "logoZoomIn 1.2s ease-out forwards",
+        logoSpin: "logoSpin 1.5s linear infinite",
+        fadeLine: "fadeLine 0.6s ease-in-out forwards",
+        blink: "blink 1s step-start infinite",
       },
     },
   },
